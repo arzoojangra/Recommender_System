@@ -1,0 +1,152 @@
+Thu 17 Nov 2022 11:06:50 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2022
+state = INFO
+reproducibility = True
+data_path = dataset/
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+neg_sampling = {'uniform': 1}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+epochs = 300
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'split_valid': {'RS': [0.8, 0.2]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+source_domain = {'dataset': 'ml-1m', 'data_path': 'C:\\Users\\aaaja\\OneDrive\\Documents\\Desktop\\Minor\\RecBole-CDR-main\\recbole_cdr\\config\\../dataset_example/ml-1m', 'seq_separator': ' ', 'USER_ID_FIELD': 'user_id', 'ITEM_ID_FIELD': 'item_id', 'RATING_FIELD': 'rating', 'TIME_FIELD': 'timestamp', 'NEG_PREFIX': 'neg_', 'LABEL_FIELD': 'label', 'load_col': {'inter': ['user_id', 'item_id', 'rating']}, 'user_inter_num_interval': '[5,inf)', 'item_inter_num_interval': '[5,inf)', 'val_interval': {'rating': '[3,inf)'}, 'drop_filter_field': True}
+target_domain = {'dataset': 'ml-100k', 'data_path': 'C:\\Users\\aaaja\\OneDrive\\Documents\\Desktop\\Minor\\RecBole-CDR-main\\recbole_cdr\\config\\../dataset_example/ml-100k', 'seq_separator': ',', 'USER_ID_FIELD': 'user_id', 'ITEM_ID_FIELD': 'item_id', 'RATING_FIELD': 'rating', 'TIME_FIELD': 'timestamp', 'NEG_PREFIX': 'neg_', 'LABEL_FIELD': 'label', 'load_col': {'inter': ['user_id', 'item_id', 'rating']}, 'user_inter_num_interval': '[5,inf)', 'item_inter_num_interval': '[5,inf)', 'val_interval': {'rating': '[3,inf)'}, 'drop_filter_field': True}
+
+Other Hyper Parameters: 
+wandb_project = recbole_cdr
+train_epochs = ['BOTH:300']
+require_pow = False
+embedding_size = 64
+alpha = 0.5
+lambda = 0
+gamma = 0
+MODEL_TYPE = ModelType.CROSSDOMAIN
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+train_modes = ['BOTH']
+epoch_num = ['300']
+source_split = False
+device = cpu
+train_neg_sample_args = {'strategy': 'by', 'by': 1, 'distribution': 'uniform', 'dynamic': 'none'}
+eval_neg_sample_args = {'strategy': 'full', 'distribution': 'uniform'}
+
+
+Thu 17 Nov 2022 11:06:57 INFO  Source domain: ml-1m
+The number of users: 6039
+Average actions of users: 138.42149718449818
+The number of items: 3308
+Average actions of items: 252.73329301481706
+The number of inters: 835789
+The sparsity of the dataset: 95.81624619337467%
+Remain Fields: ['source_user_id', 'source_item_id', 'source_rating']
+Target domain: ml-100k
+The number of users: 944
+Average actions of users: 86.64369034994698
+The number of items: 1197
+Average actions of items: 68.31521739130434
+The number of inters: 81705
+The sparsity of the dataset: 92.76926426235079%
+Remain Fields: ['target_user_id', 'target_item_id', 'target_rating']
+Num of overlapped user: 1
+Num of overlapped item: 1154
+Thu 17 Nov 2022 11:06:58 INFO  [Training]: train_batch_size = [2048] negative sampling: [{'uniform': 1}]
+Thu 17 Nov 2022 11:06:58 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'split_valid': {'RS': [0.8, 0.2]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Thu 17 Nov 2022 11:06:58 INFO  CMF(
+  (user_embedding): Embedding(6982, 64)
+  (item_embedding): Embedding(3351, 64)
+  (sigmoid): Sigmoid()
+  (loss): BCELoss()
+  (source_reg_loss): EmbLoss()
+  (target_reg_loss): EmbLoss()
+)
+Trainable parameters: 661312
+Thu 17 Nov 2022 11:06:58 INFO  Start training with BOTH mode
+Thu 17 Nov 2022 11:06:59 INFO  epoch 0 training [time: 1.05s, train loss: 45.0511]
+Thu 17 Nov 2022 11:06:59 INFO  epoch 0 evaluating [time: 0.22s, valid_score: 0.052700]
+Thu 17 Nov 2022 11:06:59 INFO  valid result: 
+recall@10 : 0.021    mrr@10 : 0.0527    ndcg@10 : 0.0229    hit@10 : 0.1516    precision@10 : 0.0177
+Thu 17 Nov 2022 11:06:59 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:00 INFO  epoch 1 training [time: 0.81s, train loss: 44.9123]
+Thu 17 Nov 2022 11:07:00 INFO  epoch 1 evaluating [time: 0.15s, valid_score: 0.240900]
+Thu 17 Nov 2022 11:07:00 INFO  valid result: 
+recall@10 : 0.1092    mrr@10 : 0.2409    ndcg@10 : 0.1234    hit@10 : 0.4814    precision@10 : 0.087
+Thu 17 Nov 2022 11:07:00 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:01 INFO  epoch 2 training [time: 0.95s, train loss: 43.5574]
+Thu 17 Nov 2022 11:07:01 INFO  epoch 2 evaluating [time: 0.17s, valid_score: 0.256100]
+Thu 17 Nov 2022 11:07:01 INFO  valid result: 
+recall@10 : 0.1224    mrr@10 : 0.2561    ndcg@10 : 0.1334    hit@10 : 0.5069    precision@10 : 0.0922
+Thu 17 Nov 2022 11:07:01 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:02 INFO  epoch 3 training [time: 1.07s, train loss: 40.1535]
+Thu 17 Nov 2022 11:07:03 INFO  epoch 3 evaluating [time: 0.14s, valid_score: 0.274200]
+Thu 17 Nov 2022 11:07:03 INFO  valid result: 
+recall@10 : 0.127    mrr@10 : 0.2742    ndcg@10 : 0.1429    hit@10 : 0.5133    precision@10 : 0.0955
+Thu 17 Nov 2022 11:07:03 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:03 INFO  epoch 4 training [time: 0.79s, train loss: 37.1181]
+Thu 17 Nov 2022 11:07:03 INFO  epoch 4 evaluating [time: 0.13s, valid_score: 0.277300]
+Thu 17 Nov 2022 11:07:03 INFO  valid result: 
+recall@10 : 0.1439    mrr@10 : 0.2773    ndcg@10 : 0.1519    hit@10 : 0.5493    precision@10 : 0.1001
+Thu 17 Nov 2022 11:07:03 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:04 INFO  epoch 5 training [time: 0.97s, train loss: 34.9791]
+Thu 17 Nov 2022 11:07:05 INFO  epoch 5 evaluating [time: 0.15s, valid_score: 0.279800]
+Thu 17 Nov 2022 11:07:05 INFO  valid result: 
+recall@10 : 0.1576    mrr@10 : 0.2798    ndcg@10 : 0.1599    hit@10 : 0.5695    precision@10 : 0.1049
+Thu 17 Nov 2022 11:07:05 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:06 INFO  epoch 6 training [time: 1.01s, train loss: 33.6883]
+Thu 17 Nov 2022 11:07:06 INFO  epoch 6 evaluating [time: 0.15s, valid_score: 0.289100]
+Thu 17 Nov 2022 11:07:06 INFO  valid result: 
+recall@10 : 0.1683    mrr@10 : 0.2891    ndcg@10 : 0.1681    hit@10 : 0.5875    precision@10 : 0.1087
+Thu 17 Nov 2022 11:07:06 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:07 INFO  epoch 7 training [time: 1.02s, train loss: 32.6167]
+Thu 17 Nov 2022 11:07:07 INFO  epoch 7 evaluating [time: 0.16s, valid_score: 0.301200]
+Thu 17 Nov 2022 11:07:07 INFO  valid result: 
+recall@10 : 0.1792    mrr@10 : 0.3012    ndcg@10 : 0.1766    hit@10 : 0.6066    precision@10 : 0.1124
+Thu 17 Nov 2022 11:07:07 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:08 INFO  epoch 8 training [time: 1.25s, train loss: 31.9106]
+Thu 17 Nov 2022 11:07:08 INFO  epoch 8 evaluating [time: 0.15s, valid_score: 0.304800]
+Thu 17 Nov 2022 11:07:08 INFO  valid result: 
+recall@10 : 0.1837    mrr@10 : 0.3048    ndcg@10 : 0.1789    hit@10 : 0.6225    precision@10 : 0.1133
+Thu 17 Nov 2022 11:07:08 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:09 INFO  epoch 9 training [time: 0.89s, train loss: 31.2265]
+Thu 17 Nov 2022 11:07:09 INFO  epoch 9 evaluating [time: 0.16s, valid_score: 0.308400]
+Thu 17 Nov 2022 11:07:09 INFO  valid result: 
+recall@10 : 0.1926    mrr@10 : 0.3084    ndcg@10 : 0.1847    hit@10 : 0.6384    precision@10 : 0.1179
+Thu 17 Nov 2022 11:07:09 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:10 INFO  epoch 10 training [time: 0.87s, train loss: 30.7501]
+Thu 17 Nov 2022 11:07:10 INFO  epoch 10 evaluating [time: 0.14s, valid_score: 0.310500]
+Thu 17 Nov 2022 11:07:10 INFO  valid result: 
+recall@10 : 0.1978    mrr@10 : 0.3105    ndcg@10 : 0.1876    hit@10 : 0.6448    precision@10 : 0.119
+Thu 17 Nov 2022 11:07:11 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
+Thu 17 Nov 2022 11:07:11 INFO  epoch 11 training [time: 0.83s, train loss: 30.3262]
+Thu 17 Nov 2022 11:07:12 INFO  epoch 11 evaluating [time: 0.17s, valid_score: 0.311700]
+Thu 17 Nov 2022 11:07:12 INFO  valid result: 
+recall@10 : 0.2012    mrr@10 : 0.3117    ndcg@10 : 0.1892    hit@10 : 0.649    precision@10 : 0.1207
+Thu 17 Nov 2022 11:07:12 INFO  Saving current: saved\CMF-Nov-17-2022_11-06-58.pth
